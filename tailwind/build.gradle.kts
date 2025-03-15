@@ -5,6 +5,9 @@ plugins {
     `maven-publish`
 }
 
+group = "com.verimsolution"
+version = "1.0.0"
+
 composeCompiler {
     reportsDestination = layout.buildDirectory.dir("compose_compiler")
 }
@@ -57,40 +60,56 @@ dependencies {
     implementation(libs.androidx.compose.material)
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("release") {
-            groupId = "com.verimsolution"
-            artifactId = "tailwind"
-            version = "1.0.0"
-
-            afterEvaluate {
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                groupId = "com.verimsolution"
+                artifactId = "tailwind"
+                version = "1.0.0"
                 from(components["release"])
-            }
-
-            pom {
-                name.set("Tailwind")
-                description.set("Tailwind for Android")
-                url.set("https://github.com/verimsolution/tailwind-android")
-                licenses {
-                    license {
-                        name.set("The Apache License, Version 2.0")
-                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
-                    }
-                }
-                developers {
-                    developer {
-                        id.set("plelouch")
-                        name.set("Takougnade Prosper")
-                        email.set("plelouch7@gmail.com")
-                    }
-                }
-                scm {
-                    connection.set("scm:git:git://github.com/verimsolution/tailwind-android.git")
-                    developerConnection.set("scm:git:ssh://github.com/verimsolution/tailwind-android.git")
-                    url.set("https://github.com/verimsolution/tailwind-android")
-                }
+//                pom {
+//                    name.set("Tailwind")
+//                    description.set("Tailwind for Android")
+//                    url.set("https://github.com/plelouch7/Android-Tailwind-Theme")
+//                    licenses {
+//                        license {
+//                            name.set("The Apache License, Version 2.0")
+//                            url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+//                        }
+//                    }
+//                    developers {
+//                        developer {
+//                            id.set("plelouch")
+//                            name.set("Takougnade Prosper")
+//                            email.set("plelouch7@gmail.com")
+//                        }
+//                    }
+//                    scm {
+//                        connection.set("scm:git:git://github.com/plelouch7/Android-Tailwind-Theme.git")
+//                        developerConnection.set("scm:git:ssh://github.com/plelouch7/Android-Tailwind-Theme.git")
+//                        url.set("https://github.com/plelouch7/Android-Tailwind-Theme")
+//                    }
+//                }
             }
         }
+//        repositories {
+//            maven {
+//                name = "sonatypeStaging"
+//                url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+//                credentials {
+//                    username = project.findProperty("ossrhUsername") as String?
+//                    password = project.findProperty("ossrhPassword") as String?
+//                }
+//            }
+//            maven {
+//                name = "sonatypeSnapshots"
+//                url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+//                credentials {
+//                    username = project.findProperty("ossrhUsername") as String?
+//                    password = project.findProperty("ossrhPassword") as String?
+//                }
+//            }
+//        }
     }
 }
